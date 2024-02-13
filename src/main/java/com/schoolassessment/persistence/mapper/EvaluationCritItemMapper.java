@@ -18,7 +18,7 @@ public interface EvaluationCritItemMapper {
     List<EvaluationCriteriaItemResponse> toEvaluationCriteriansItems(List<EvaluationCritItem> evalCrit);
     @InheritInverseConfiguration
     @Mappings({
-            @Mapping(target = "id.criterionId",ignore = true),
+            @Mapping(target = "id.criterionId",ignore = "evaluationCriteria."),
             @Mapping(target = "evaluationCriteria",ignore = true)
     })
     EvaluationCritItem evaluaitonCriteriaItemsFromResponse(EvaluationCriteriaItemResponse evalCrit);

@@ -25,7 +25,7 @@ public class EvaluationCriteria {
     @Column(name = "criteriontotalize")
     private Boolean criterionTotalize;
 
-    @OneToMany(mappedBy = "evaluationCriteria")
+    @OneToMany(mappedBy = "evaluationCriteria", cascade = CascadeType.ALL)
     private List<EvaluationCritItem> items;
 
   @OneToMany(mappedBy = "evaluationCriterians")
