@@ -38,6 +38,7 @@ public class IndicatorRepository implements com.schoolassessment.domain.reposito
     @Override
     public IndicatorResponse saveIndicator(IndicatorResponse ind) {
         Indicator indicator = mapper.indicatorFromResponse(ind);
+        indicator.setIndicatorCriteriaId(ind.getCriteria().getId());
         return  mapper.toIndicator(indicatorCrudRepository.save(indicator ));
     }
 
