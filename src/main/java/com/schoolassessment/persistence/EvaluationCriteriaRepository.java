@@ -3,10 +3,15 @@ package com.schoolassessment.persistence;
 import com.schoolassessment.domain.dto.EvaluationCriteriaResponse;
 import com.schoolassessment.domain.repository.EvaluaitonCriteriaRepository;
 import com.schoolassessment.persistence.crud.EvaluationCriteriaCrudRepository;
+import com.schoolassessment.persistence.entity.EvaluationCritItem;
 import com.schoolassessment.persistence.entity.EvaluationCriteria;
 import com.schoolassessment.persistence.mapper.EvaluationCriteriaMapper;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +21,8 @@ public class EvaluationCriteriaRepository implements EvaluaitonCriteriaRepositor
 
     @Autowired
     private EvaluationCriteriaCrudRepository evalCritcrudrepository;
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     private EvaluationCriteriaMapper mapper;
@@ -33,8 +40,13 @@ public class EvaluationCriteriaRepository implements EvaluaitonCriteriaRepositor
 
     @Override
     public EvaluationCriteriaResponse saveCriteria(EvaluationCriteriaResponse eval) {
-            EvaluationCriteria evaluation = mapper.evaluatinoCriteriaFromResponse(eval);
-            return mapper.toEvaluationCriteria(evalCritcrudrepository.save(evaluation));
+        EvaluationCriteria clearEvaluation = mapper.evaluatinoCriteriaFromResponse(eval);
+        clearEvaluation.setItems(new ArrayList<>());
+        mapper.toEvaluationCriteria(evalCritcrudrepository.save(clearEvaluation));
+
+        EvaluationCriteria evaluation = mapper.evaluatinoCriteriaFromResponse(eval);
+        evaluation.getItems().forEach(item ->  item.setEvaluationCriteria(evaluation));
+        return mapper.toEvaluationCriteria(evalCritcrudrepository.save(evaluation));
     }
 
     @Override

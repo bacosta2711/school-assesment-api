@@ -29,18 +29,18 @@ public class Indicator {
     private Integer indicatorEvaluation;
 
     @Column(name = "inicatorfather")
-    private Integer inicatorFather;
+    private Integer father;
 
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "indicatorcriteria", insertable = false, updatable = false)
     private EvaluationCriteria evaluationCriterians;
 
-    @OneToOne
-    @JoinColumn(name = "indicatorid",insertable = false,updatable = false)
-    private Indicator indicatorFather;
+    //@OneToOne
+    //@JoinColumn(name = "indicatorid",insertable = false,updatable = false)
+    //private Indicator father;
 
-    @OneToOne
-    @JoinColumn(name = "evaluationId", insertable = false,updatable = false)
-    private Evaluation indicatorEval;
+   // @OneToOne
+    //@JoinColumn(name = "evaluationId", insertable = false,updatable = false)
+    //private Evaluation indicatorEval;
 
 }

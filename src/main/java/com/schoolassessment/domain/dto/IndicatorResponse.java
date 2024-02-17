@@ -8,6 +8,6 @@ public class IndicatorResponse {
     private String code;
     private String description;
     private EvaluationCriteriaResponse criteria;
-    private EvaluationResponse evaluation;
-    private IndicatorResponse father;
+    private Integer evaluation;
+    private Integer father;
 }

@@ -7,15 +7,15 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import java.util.List;
-@Mapper(componentModel = "spring",uses = {IndicatorMapping.class, EvaluationMapper.class, EvaluationCritItemMapper.class})
-public interface IndicatorMapping {
+@Mapper(componentModel = "spring",uses = {EvaluationCriteriaMapper.class})
+public interface IndicatorMapper {
     @Mappings({
             @Mapping(source = "indicatorId",target = "id"),
             @Mapping(source = "indicatorCode",target = "code"),
             @Mapping(source = "indicatorDesc",target = "description"),
             @Mapping(source = "evaluationCriterians",target = "criteria"),
-            @Mapping(source = "indicatorEval",target = "evaluation"),
-            @Mapping(source = "indicatorFather",target = "father"),
+            @Mapping(source = "indicatorEvaluation",target = "evaluation"),
+           // @Mapping(source = "inicatorFather",target = "father"),
     })
     IndicatorResponse toIndicator(Indicator indicator);
 

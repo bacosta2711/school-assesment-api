@@ -21,6 +21,7 @@ public class EvaluationCritItem {
     private String itemRep;
 
     @ManyToOne
+    @MapsId("criterionId")
     @JoinColumn(name = "criterionid",insertable = false,updatable = false)
     private EvaluationCriteria evaluationCriteria;
 }

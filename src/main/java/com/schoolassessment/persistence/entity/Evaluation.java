@@ -17,7 +17,7 @@ public class Evaluation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "evaluationId")
+    @Column(name = "evaluationid")
     private Integer evaluationId;
 
     @Column(name = "evaluationyear")
@@ -38,5 +38,6 @@ public class Evaluation {
 
     @OneToMany(mappedBy = "registryEvaluation")
     private List<EvaluationRegistry> evaluationRegistryList;
+
 
 }
