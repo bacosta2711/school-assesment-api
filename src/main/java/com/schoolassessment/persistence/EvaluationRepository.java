@@ -32,8 +32,11 @@ public class EvaluationRepository implements com.schoolassessment.domain.reposit
 
     @Override
     public EvaluationResponse saveEvaluation(EvaluationResponse eval) {
+
         Evaluation evalEntity = mapper.evaluationFromResponse(eval);
-        evalEntity.setEvaluationTypeId(eval.getId());
+        evalEntity.setEvaluationTypeId(eval.getType().getId());
+        System.out.println(eval.toString());
+        System.out.println(evalEntity.toString());
         return mapper.toEvaluation(evaluationCrudRepository.save(evalEntity));
     }
 

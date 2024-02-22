@@ -1,5 +1,6 @@
 package com.schoolassessment.domain.service;
 
+import com.schoolassessment.domain.dto.EvaluationCriteriaResponse;
 import com.schoolassessment.domain.dto.EvaluationResponse;
 import com.schoolassessment.domain.dto.IndicatorResponse;
 import com.schoolassessment.persistence.EvaluationRepository;
@@ -30,12 +31,18 @@ public class EvaluationService {
     public EvaluationResponse saveEvaluation(EvaluationResponse eval){
         EvaluationResponse evaluaitonResult = evaluationRepository.saveEvaluation(eval);
 
-        if(eval.getId()!=0 && evaluaitonResult.getId()>0){
+        if(eval.equals(evaluaitonResult)) {
+            System.out.println("Entro if");
+        }else{
+            System.out.println("Entro else");
             IndicatorResponse indicatorResponse= new IndicatorResponse();
             indicatorResponse.setEvaluation(evaluaitonResult.getId());
             indicatorResponse.setCode("C");
             indicatorResponse.setDescription(evaluaitonResult.getDescription());
 
+            EvaluationCriteriaResponse crit = new EvaluationCriteriaResponse( );
+            crit.setId(2);
+            indicatorResponse.setCriteria(crit);
             indicatorRepository.saveIndicator(indicatorResponse);
         }
         return evaluaitonResult;
