@@ -6,5 +6,6 @@ import lombok.Data;
 public class EvaluationRegistryDetResponse {
     private Integer id;
     private EvaluationCriteriaResponse criteria;
+    private Integer itemCritId;
     private Integer value;
 }
